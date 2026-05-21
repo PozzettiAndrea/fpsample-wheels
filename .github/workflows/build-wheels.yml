@@ -42,9 +42,12 @@ jobs:
           CIBW_BUILD: "cp${{ matrix.python }}-*"
           CIBW_ARCHS_LINUX: "x86_64"
           CIBW_ARCHS_WINDOWS: "AMD64"
-          # cp314 + free-threaded variants aren't shipped by upstream yet.
-          # Skip pypy and musllinux to keep the matrix lean -- only ship
-          # the cells comfy-test / comfy-env actually consume.
+          # cp314 is still gated behind cpython-prerelease in cibuildwheel v3.0
+          # (Python 3.14 only stabilised Oct 2025). Enable explicitly so the
+          # cp314 cells can build.
+          CIBW_ENABLE: "cpython-prerelease"
+          # Skip pypy and musllinux to keep the matrix lean -- only ship the
+          # cells comfy-test / comfy-env actually consume.
           CIBW_SKIP: "pp* *-musllinux* *_i686 *-win32"
           CIBW_BUILD_VERBOSITY: 1
 
