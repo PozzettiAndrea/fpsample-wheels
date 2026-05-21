@@ -1,0 +1,4 @@
+[submodule "fpsample"]
+	path = fpsample
+	url = https://github.com/leonardodalinky/fpsample.git
+	branch = main
